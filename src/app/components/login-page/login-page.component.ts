@@ -17,7 +17,7 @@ import { MatProgressButtonOptions } from 'mat-progress-buttons';
 export class LoginPageComponent implements OnInit {
 
   public loginForm: FormGroup;
-  public readonly hide: boolean = true;
+  public hide = true;
   public currentState = 'initial';
   public text = 'LOGIN';
 
