@@ -3,15 +3,13 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-var distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
 
 // Serve only the static files form the dist directory
-// app.use(express.static(__dirname + '/dist/<name-of-app>'));
+app.use(express.static(__dirname + '/dist/Conference-Booking-System'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/<name-of-app>/index.html'));
+res.sendFile(path.join(__dirname+'/dist/Conference-Booking-System/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
