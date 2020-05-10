@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import * as moment from 'moment/moment';
+import * as moment from 'moment';
 
 import {
     INIT_CONFERENCE,

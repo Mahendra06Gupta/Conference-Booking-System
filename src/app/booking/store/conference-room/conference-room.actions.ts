@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ConferenceRoomOverviewModel } from '@app/booking/models/conference-overview/conference-room-overview.model';
-import * as moment from 'moment/moment';
+import { Moment } from 'moment';
 
 export const INIT_CONFERENCE = '[CONFERENCE] INIT_CONFERENCE';
 export const UPDATE_BOOKED_CONFERENCE_ROOM = '[CONFERENCE] UPDATE_BOOKED_CONFERENCE_ROOM';
@@ -25,7 +25,7 @@ export class UpdateBookedConferenceRoom implements Action {
 export class UpdateSelectedBookingDate implements Action {
     public readonly type = UPDATE_SELECTED_BOOKING_DATE;
 
-    constructor(public payload: moment.Moment) {
+    constructor(public payload: Moment) {
     }
 
 }

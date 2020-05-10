@@ -1,5 +1,5 @@
 import { RoomModel } from '@app/booking/models/room-overview/individual-room-overview.model';
-import * as moment from 'moment/moment';
+import * as moment from 'moment';
 import { ConferenceRoomModel, VcModel } from '../models/conference-overview/conference-room-overview.model';
 
 export const Admin1: RoomModel = {

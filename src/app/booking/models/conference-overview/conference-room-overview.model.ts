@@ -1,8 +1,8 @@
-import * as moment from 'moment/moment';
+import { Moment } from 'moment';
 export interface ConferenceRoomOverviewModel {
     roomName: string;
     roomId: string;
-    date: moment.Moment;
+    date: Moment;
     bookedBy: string;
     slot: string;
     status: string;
@@ -16,11 +16,11 @@ export interface ConferenceRoomModel {
 export interface VcModel {
     roomName: string;
     roomId: string;
-    roomAddedOn: moment.Moment;
+    roomAddedOn: Moment;
     createdBy: string;
 }
 
-export function getConferenceForAParticularDate(conferenceEntities: ConferenceRoomOverviewModel[], date: moment.Moment) {
+export function getConferenceForAParticularDate(conferenceEntities: ConferenceRoomOverviewModel[], date: Moment) {
     const conferenceForADate = [];
 
     for (const conference of conferenceEntities) {

@@ -26,7 +26,7 @@ export const getBookingDate = createSelector(
 export const getConferenceForAParticularDate = createSelector(
     getConferenceEntities,
     getBookingDate,
-    (conference, date: moment.Moment) => fromConferenceModel.getConferenceForAParticularDate(conference, date)
+    (conference, date: Moment) => fromConferenceModel.getConferenceForAParticularDate(conference, date)
 );
 
 export const getNoOfCancelledAndCancelledRoom = createSelector(
