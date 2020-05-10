@@ -29,7 +29,6 @@ export function conferenceAddingReducer(state: ConferenceAddingState = INITIAL_C
                 initiated: true
             });
             case NEW_CONFERENCE_ADDED:
-                console.log('action.payload', action.payload);
                 const {
                     roomName,
                     roomId,

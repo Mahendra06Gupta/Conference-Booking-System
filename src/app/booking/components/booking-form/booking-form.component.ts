@@ -55,6 +55,9 @@ export class BookingFormComponent implements OnInit {
   public startDate = moment();
   public currentTime = moment().format('HH:mm');
   public toTime = moment().add(3, 'hours').format('HH:mm');
+  public submitButton = 'Create Room';
+  public isSubmitted = false;
+  public isCreating = false;
 
   constructor(
     public readonly fb: FormBuilder,
@@ -78,18 +81,25 @@ export class BookingFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    this.isSubmitted = true;
+    this.isCreating = false;
+    this.submitButton = 'Creating...';
     const overlap = this.hasTimeError(this.roomBookingForm.controls.date.value, this.roomBookingForm.controls.vcId.value);
     if (overlap) {
       let vcIdTobeBooked = this.roomBookingForm.controls.vcId.value;
       const overlapVc = overlap && overlap.length === 0 ? '' : this.getOverlappedVc(vcIdTobeBooked, overlap);
-      vcIdTobeBooked = overlapVc && overlapVc.length !== 0 ? vcIdTobeBooked.filter(val => !overlapVc.includes(val)) : vcIdTobeBooked;
+      vcIdTobeBooked = overlapVc && overlapVc.length !== 0 ? vcIdTobeBooked.filter((val: string) => !overlapVc.includes(val)) : vcIdTobeBooked;
       const data = [];
       let bookingId = +this.conferenceData.slice(-1)[0].bookingId.match(/\d+/)[0];
-      vcIdTobeBooked.forEach(vcId => {
+      vcIdTobeBooked.forEach((vcId: string) => {
         bookingId++;
         data.push(this.prepareBookingData(vcId, `B${bookingId}`));
       });
       this.callBookingAction(data, overlap);
+    } else {
+      this.isSubmitted = false;
+      this.isCreating = false;
+      this.submitButton = 'Create Room';
     }
   }
 
@@ -110,30 +120,38 @@ export class BookingFormComponent implements OnInit {
 
   private callBookingAction(data, overlap: VcOverlap[]): void {
 
-    if (this.userAuthenticate) {
-      data.forEach((bookingdata: ConferenceRoomOverviewModel) => {
-        this.store$.dispatch(new BookIndividualVcRoom(bookingdata)),
-        this.store$.dispatch(new UpdateBookedConferenceRoom(bookingdata));
-      });
-      if (overlap && overlap.length !== 0) {
-        overlap.forEach((overlapdata) => {
-          if (overlapdata.vcId !== '') {
-            this.toastr.error(`${overlapdata.vcId} is already booked by ${overlapdata.bookedBy} at ${overlapdata.overlapTimeAndDate}`);
-          } else {
-            setTimeout(() => { this.sendEmail(); this.dialogService.closeAllDialogs(); } , 2000);
-            this.toastr.success('Room(s) added Successfully');
-            this.store$.select(fromBookingsSelectors.getBookingEntities).subscribe(
-              res => this.dialogService.isRoomAdded.next(res)
-            );
-
-          }
+    setTimeout(() => {
+      if (this.userAuthenticate) {
+        data.forEach((bookingdata: ConferenceRoomOverviewModel) => {
+          this.store$.dispatch(new BookIndividualVcRoom(bookingdata)),
+          this.store$.dispatch(new UpdateBookedConferenceRoom(bookingdata));
         });
+        if (overlap && overlap.length !== 0) {
+          overlap.forEach((overlapdata) => {
+            if (overlapdata.vcId !== '') {
+              this.toastr.error(`${overlapdata.vcId} is already booked by ${overlapdata.bookedBy} at ${overlapdata.overlapTimeAndDate}`);
+            } else {
+              this.isCreating = true;
+              this.isSubmitted = false;
+              this.submitButton = 'Completed';
+              setTimeout(() => {
+                this.sendEmail();
+                this.dialogService.closeAllDialogs();
+                this.isCreating = false;
+              } , 2000);
+              this.toastr.success('Room(s) added Successfully');
+              this.store$.select(fromBookingsSelectors.getBookingEntities).subscribe(
+                res => this.dialogService.isRoomAdded.next(res)
+              );
+            }
+          });
+        }
+      } else {
+        this.dialogService.closeAllDialogs();
+        this.toastr.error('Please login again to proceed');
+        this.store$.dispatch(new GoToLogin());
       }
-    } else {
-      this.dialogService.closeAllDialogs();
-      this.toastr.error('Please login again to proceed');
-      this.store$.dispatch(new GoToLogin());
-    }
+    }, 2000);
   }
 
   private sendEmail() {

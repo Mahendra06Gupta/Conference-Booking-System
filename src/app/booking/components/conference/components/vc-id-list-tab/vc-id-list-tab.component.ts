@@ -33,7 +33,6 @@ export class VcIdListTabComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     setTimeout(() => this.loader = false, 200);
     this.dialogService.isRoomAdded.subscribe(res => {
-      console.log(res);
       if (res && res.length !== 0) {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;

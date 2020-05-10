@@ -24,7 +24,6 @@ export const INITIAL_BOOKING_VC_STATE: BookingVcState = bookingAdapter.getInitia
 export function bookingVcReducer(state: BookingVcState = INITIAL_BOOKING_VC_STATE, action: BookingVcActions): BookingVcState {
     switch (action.type) {
         case INIT_INDIVIDUAL_BOOKING_VC:
-            console.log('action.payload', action.payload);
             return bookingAdapter.addAll(action.payload, {
                 ...state,
                 initiated: true

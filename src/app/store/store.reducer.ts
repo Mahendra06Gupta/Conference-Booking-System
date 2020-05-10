@@ -26,7 +26,6 @@ export function rootStoreMetaReducer(reducer): (state, action: Action) => RootSt
                 }
                 const stateToSave = pick(nextState, stateKeys);
                 setSavedState(stateToSave, localStorageKey);
-                console.log('nextState', nextState);
                 return nextState;
             }
         }

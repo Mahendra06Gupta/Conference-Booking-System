@@ -16,8 +16,8 @@ export class NavigationLeftMenuComponent implements OnInit {
 
   public isLargeDevices$: Observable<boolean>;
   public sidenavMenu = [
-    { name: 'View Individual Conference', icon: 'video_label', action: new GoToBooking(), actionDescription: 'GoToBooking', permissions: []},
-    { name: 'Add Conference Room', icon: 'meeting_room', action: new GoToConference(), actionDescription: 'GoToConference', permissions: ['admin']},
+    { name: 'Individual VC', icon: 'video_label', action: new GoToBooking(), actionDescription: 'GoToBooking', permissions: []},
+    { name: 'Add Conference', icon: 'meeting_room', action: new GoToConference(), actionDescription: 'GoToConference', permissions: ['admin']},
     { name: 'Logout', icon: 'power_settings_new', action: new LogOut(), actionDescription: 'Logout', permissions: []}
   ];
 

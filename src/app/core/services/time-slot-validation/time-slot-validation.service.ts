@@ -74,6 +74,7 @@ export class TimeSlotValidationService {
     !this.isToTimeLessThanFromTime(fromTime, toTime)
     && !this.isSelectedTimePast(fromTime, toTime, currentTime, dateSelected, currentDate)
     && this.isSelectedSlotValid(fromTime, toTime)
+    && this.isSelectedTimeInValidRange(fromTime, toTime);
 
     return isValid;
   }

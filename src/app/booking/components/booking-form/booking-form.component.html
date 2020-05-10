@@ -53,10 +53,12 @@
             </div>
         </div>
         <div fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2rem">
-            <button class="m-3" mat-raised-button color="primary" [disabled]="roomBookingForm.invalid">
-                Create Room
+            <button fxLayout="row" class="m-3 submit" mat-raised-button color="primary" [disabled]="roomBookingForm.invalid">
+                <mat-spinner *ngIf="isSubmitted" class="d-inline-block mr-1 text-white" [diameter]="20"></mat-spinner>
+                <mat-icon *ngIf="isCreating">done</mat-icon>
+                <span>{{submitButton}}</span>
             </button>
-            <button class="m-3" mat-raised-button color="warn" mat-dialog-close>
+            <button class="m-3" *ngIf="!isCreating && !isSubmitted" mat-raised-button color="warn" mat-dialog-close>
                 Cancel
             </button>
         </div>

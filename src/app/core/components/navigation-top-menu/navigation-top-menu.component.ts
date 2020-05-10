@@ -41,7 +41,7 @@ export class NavigationTopMenuComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscriptionArray.push(this.store$.select(fromRouterSelector.getActiveUrl).subscribe(
-      res => this.activeRoute = res.replace('/', '')
+      res => res ? this.activeRoute = res.replace('/', '') : ''
     )),
     this.isSignedIn$ = this.store$.select(fromUserDetailsSelector.isUserLoggedIn);
     this.isLargeDevices$ = this.deviceSizeBreakpointService.isSmallDevice().pipe(

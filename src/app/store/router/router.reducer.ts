@@ -24,7 +24,6 @@ export function routerReducer(routerState: AppRouterReducerState<RouterState>,
                               action: RouterAction<any, RouterState>): AppRouterReducerState<RouterState> {
     switch (action.type) {
         case ROUTER_NAVIGATION: {
-            console.log('action', action);
             return {
                 ...routerState,
                 stateChangeRequest: action.payload.routerState,
