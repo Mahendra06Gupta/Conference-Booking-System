@@ -7,7 +7,7 @@ import { ContextMenuService } from './core/services/context-menu/context-menu.se
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Conference-Booking-System';
+  title = 'pagaar-app';
 
   constructor(public readonly contextMenuService: ContextMenuService) {}
 }

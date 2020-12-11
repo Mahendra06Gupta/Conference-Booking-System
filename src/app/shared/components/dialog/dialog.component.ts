@@ -2,7 +2,7 @@ import {
   Component, OnInit, OnDestroy, Inject, ViewChild, ComponentFactoryResolver, ViewContainerRef,
   ComponentRef, ViewEncapsulation
 } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',

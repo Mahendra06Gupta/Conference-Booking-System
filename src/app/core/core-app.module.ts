@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatMenuModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { throwIfAlreadyLoaded } from './module-import-check';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
