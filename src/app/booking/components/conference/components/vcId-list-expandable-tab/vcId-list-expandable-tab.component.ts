@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { RootState } from '@app/store/models/root-state.model';
 import { ActionModalComponent } from '@app/shared/components/action-modal';
 import { DialogService } from '@app/core/services/dialog-service/dialog.service';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { VcModel } from '@app/booking/models/conference-overview/conference-room-overview.model';
 
 @Component({

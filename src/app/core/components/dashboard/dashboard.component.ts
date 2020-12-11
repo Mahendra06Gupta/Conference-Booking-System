@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatSidenavContainer } from '@angular/material';
+import { MatSidenavContainer } from '@angular/material/sidenav';
 
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 

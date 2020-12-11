@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { RootState } from '@app/store/models/root-state.model';
 import { ActionModalComponent } from '@app/shared/components/action-modal';
 import { DialogService } from '@app/core/services/dialog-service/dialog.service';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { VcModel } from '@app/booking/models/conference-overview/conference-room-overview.model';
 
 @Component({
@@ -18,7 +19,7 @@ export class VcIdListTabComponent implements OnInit {
   @Input() public createdVc: VcModel[];
   public loader = true;
   public isDescendingByDate = true;
-  public dataSource: MatTableDataSource<VcModel> = new MatTableDataSource(this.createdVc);
+  public dataSource: MatTableDataSource<VcModel>;
 
   constructor(
     public readonly store$: Store<RootState>,
@@ -29,6 +30,7 @@ export class VcIdListTabComponent implements OnInit {
 
 
   public ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.createdVc);
     this.sortVcsAsPerDate();
     this.dataSource.paginator = this.paginator;
     setTimeout(() => this.loader = false, 200);

@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { IndividualRoomOverviewModel } from '@app/booking/models/room-overview/individual-room-overview.model';
 import { RootState } from '@app/store/models/root-state.model';
 import { ActionModalComponent } from '@app/shared/components/action-modal';
 import { DialogService } from '@app/core/services/dialog-service/dialog.service';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-booking-list-tab',
@@ -18,7 +19,7 @@ export class BookingListTabComponent implements OnInit {
   @Input() public showCancel: boolean;
   public loader = true;
   public isDescendingByDate = true;
-  public dataSource: MatTableDataSource<IndividualRoomOverviewModel> = new MatTableDataSource(this.bookingsVc);
+  public dataSource: MatTableDataSource<IndividualRoomOverviewModel>;
 
   public columnDefinitions = [
     { def: 'roomName', show: true },
@@ -28,7 +29,7 @@ export class BookingListTabComponent implements OnInit {
     { def: 'slot', show: true },
     { def: 'status', show: true },
     { def: 'bookingId', show: true },
-    { def: 'action', show: this.showCancel },
+    // { def: 'action', show: this.showCancel },
   ];
 
   constructor(
@@ -38,8 +39,8 @@ export class BookingListTabComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-
   public ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.bookingsVc);
     this.sortroomsAsPerDate();
     this.dataSource.paginator = this.paginator;
     setTimeout(() => this.loader = false, 200);

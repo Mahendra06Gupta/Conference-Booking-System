@@ -1,5 +1,5 @@
 import { Injectable, Type } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DialogComponent } from '@app/shared/components/dialog/dialog.component';

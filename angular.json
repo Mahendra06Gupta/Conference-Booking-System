@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Conference-Booking-System": {
+    "pagaar-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Conference-Booking-System",
+            "outputPath": "dist/pagaar-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,8 +29,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["src/assets/smtp.js"],
-            "es5BrowserSupport": true
+            "scripts": [
+              "src/assets/smtp.js"
+            ],
+            "aot": true
           },
           "configurations": {
             "production": {
@@ -43,9 +45,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -54,6 +54,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -62,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Conference-Booking-System:build"
+            "browserTarget": "pagaar-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Conference-Booking-System:build:production"
+              "browserTarget": "pagaar-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Conference-Booking-System:build"
+            "browserTarget": "pagaar-app:build"
           }
         },
         "test": {
@@ -107,7 +111,7 @@
         }
       }
     },
-    "Conference-Booking-System-e2e": {
+    "pagaar-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +120,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Conference-Booking-System:serve"
+            "devServerTarget": "pagaar-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Conference-Booking-System:serve:production"
+              "devServerTarget": "pagaar-app:serve:production"
             }
           }
         },
@@ -136,7 +140,7 @@
       }
     }
   },
-  "defaultProject": "Conference-Booking-System",
+  "defaultProject": "pagaar-app",
   "cli": {
     "defaultCollection": "@ngrx/schematics"
   }
