@@ -33,7 +33,7 @@
     "@types/gsap": "^1.20.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.8.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mat-progress-buttons": "^9.1.1",
     "ngx-toastr": "^13.2.0",
     "path": "^0.12.7",
